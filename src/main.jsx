@@ -12,6 +12,10 @@ import ErrorPage from "./pages/ErrorPage";
 
 import Header from "./components/Header";
 
+//	Context
+
+import ContextProvider from "./context/Context";
+
 // CSS
 import "./css/app.css";
 
@@ -29,15 +33,16 @@ const router = createBrowserRouter([
 				path: "/cart",
 				element: <Cart />,
 			},
-		]
+		],
 	},
-
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<>
 		<React.StrictMode>
-			<RouterProvider router={router} />
+			<ContextProvider>
+				<RouterProvider router={router} />
+			</ContextProvider>
 		</React.StrictMode>
 	</>
 );
