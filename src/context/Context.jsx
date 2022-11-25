@@ -13,10 +13,11 @@ function ContextProvider({ children }) {
 			.then((res) => res.json())
 			.then((value) => setPhotos(value));
 	}
+
 	useEffect(() => {
 		getPhotos();
 	}, []);
-	console.log(Photos);
+
 	const ContextData = {
 		Photos: Photos,
 		setPhotos: setPhotos,
@@ -24,4 +25,4 @@ function ContextProvider({ children }) {
 	return <Context.Provider value={ContextData}>{children}</Context.Provider>;
 }
 
-export default ContextProvider;
+export {ContextProvider, Context};

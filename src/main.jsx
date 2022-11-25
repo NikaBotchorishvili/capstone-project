@@ -14,7 +14,7 @@ import Header from "./components/Header";
 
 //	Context
 
-import ContextProvider from "./context/Context";
+import { ContextProvider } from "./context/Context";
 
 // CSS
 import "./css/app.css";

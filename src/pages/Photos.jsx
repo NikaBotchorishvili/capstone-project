@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //  Components
-import Header from "../components/Header"
+
+import Header from "../components/Header";
+import Image from "../components/Image";
+
+//	Context
+
+import { Context as MainContext } from "../context/Context";
+
+//	Utillities
+
+import { GetClass } from "../utils/index";
 
 function Photos() {
+	const context = useContext(MainContext);
 	return (
 		<>
 			<main className="photos">
-				<h1>Images go here</h1>
+
+					{context.Photos.map(({id, url}) => {
+						return <Image key={id} imageURL={url} className={GetClass(id)} />;
+					})}
 			</main>
 		</>
 	);
