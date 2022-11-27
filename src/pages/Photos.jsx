@@ -14,13 +14,13 @@ import { Context as MainContext } from "../context/Context";
 import { GetClass } from "../utils/index";
 
 function Photos() {
-	const context = useContext(MainContext);
+	const { Photos } = useContext(MainContext);
 	return (
 		<>
 			<main className="photos">
 
-					{context.Photos.map(({id, url}) => {
-						return <Image key={id} imageURL={url} className={GetClass(id)} />;
+					{Photos.map(({id, url, isFavorite}) => {
+						return <Image key={id} id={id} imageURL={url} isFavorite={isFavorite} className={GetClass(id)} />;
 					})}
 			</main>
 		</>

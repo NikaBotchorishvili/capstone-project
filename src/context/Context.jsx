@@ -18,11 +18,24 @@ function ContextProvider({ children }) {
 		getPhotos();
 	}, []);
 
+	function toggleFavorite(id) {
+		setPhotos(() => {
+			return Photos.map((photo) => {
+				if (photo.id == id) {
+					console.log(!photo.isFavorite)
+					return { ...photo, isFavorite: !photo.isFavorite };
+				}
+				return photo;
+			});
+		});
+	}
+
 	const ContextData = {
 		Photos: Photos,
 		setPhotos: setPhotos,
+		toggleFavorite: toggleFavorite,
 	};
 	return <Context.Provider value={ContextData}>{children}</Context.Provider>;
 }
 
-export {ContextProvider, Context};
+export { ContextProvider, Context };
