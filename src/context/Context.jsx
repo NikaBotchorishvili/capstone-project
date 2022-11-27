@@ -22,7 +22,6 @@ function ContextProvider({ children }) {
 		setPhotos(() => {
 			return Photos.map((photo) => {
 				if (photo.id == id) {
-					console.log(!photo.isFavorite)
 					return { ...photo, isFavorite: !photo.isFavorite };
 				}
 				return photo;
