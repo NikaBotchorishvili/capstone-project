@@ -19,14 +19,14 @@ function ContextProvider({ children }) {
 	}, []);
 
 	function toggleFavorite(id) {
-		setPhotos(() => {
-			return Photos.map((photo) => {
+		setPhotos(() =>
+			Photos.map((photo) => {
 				if (photo.id == id) {
 					return { ...photo, isFavorite: !photo.isFavorite };
 				}
 				return photo;
-			});
-		});
+			})
+		);
 	}
 
 	function addCartItem(id) {
@@ -35,10 +35,10 @@ function ContextProvider({ children }) {
 		setCartItems((prevCartItems) => [...prevCartItems, photo]);
 	}
 
-	function removeCartItem(id){
-		setCartItems((prevCartItems) => {
-			return prevCartItems.filter((item) => item.id != id)
-		});
+	function removeCartItem(id) {
+		setCartItems((prevCartItems) =>
+			prevCartItems.filter((item) => item.id != id)
+		);
 	}
 
 	const ContextData = {
