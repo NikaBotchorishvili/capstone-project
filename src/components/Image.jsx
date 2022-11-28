@@ -3,8 +3,9 @@ import { Context } from "../context/Context";
 import PropTypes from "prop-types";
 function Image({ image, className }) {
 	const [hovered, setHovered] = useState(false);
-	const { toggleFavorite, addCartItem, cartItems } = useContext(Context);
-
+	const { toggleFavorite, addCartItem, cartItems, removeCartItem } = useContext(
+		Context
+	);
 	function handleMouseEnter() {
 		setHovered(true);
 	}
@@ -34,9 +35,13 @@ function Image({ image, className }) {
 	function cartIcon(id) {
 		const isAdded = cartItems.find((item) => item.id == id);
 		if (isAdded) {
-			console.log(isAdded)
-			return <i className="ri-shopping-cart-fill cart"></i>;
-		} else if(hovered) {
+			return (
+				<i
+					onClick={() => removeCartItem(id)}
+					className="ri-shopping-cart-fill cart"
+				></i>
+			);
+		} else if (hovered) {
 			return (
 				<i
 					className="ri-add-circle-line cart"

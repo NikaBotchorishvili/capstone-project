@@ -34,12 +34,20 @@ function ContextProvider({ children }) {
 
 		setCartItems((prevCartItems) => [...prevCartItems, photo]);
 	}
+
+	function removeCartItem(id){
+		setCartItems((prevCartItems) => {
+			return prevCartItems.filter((item) => item.id != id)
+		});
+	}
+
 	const ContextData = {
 		Photos: Photos,
+		cartItems: cartItems,
 		setPhotos: setPhotos,
 		toggleFavorite: toggleFavorite,
 		addCartItem: addCartItem,
-		cartItems: cartItems,
+		removeCartItem: removeCartItem,
 	};
 	return <Context.Provider value={ContextData}>{children}</Context.Provider>;
 }
