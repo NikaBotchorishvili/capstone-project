@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../context/Context";
-import PropTypes from 'prop-types';
-function Image({ id, className, imageURL, isFavorite }) {
+import PropTypes from "prop-types";
+function Image({ image, className }) {
 	const [hovered, setHovered] = useState(false);
-	const { toggleFavorite } = useContext(Context);
+	const { toggleFavorite, addCartItem, cartItems } = useContext(Context);
 
 	function handleMouseEnter() {
 		setHovered(true);
@@ -14,41 +14,57 @@ function Image({ id, className, imageURL, isFavorite }) {
 	}
 
 	function heartIcon() {
-		if (isFavorite) {
+		if (image.isFavorite) {
 			return (
 				<i
-					onClick={() => toggleFavorite(id)}
+					onClick={() => toggleFavorite(image.id)}
 					className="ri-heart-fill favorite"
 				></i>
 			);
 		} else if (hovered) {
 			return (
 				<i
-					onClick={() => toggleFavorite(id)}
+					onClick={() => toggleFavorite(image.id)}
 					className="ri-heart-line favorite"
 				></i>
 			);
 		}
 	}
 
-	const cartIcon = hovered && <i className="ri-add-circle-line cart"></i>;
+	function cartIcon(id) {
+		const isAdded = cartItems.find((item) => item.id == id);
+		if (isAdded) {
+			console.log(isAdded)
+			return <i className="ri-shopping-cart-fill cart"></i>;
+		} else if(hovered) {
+			return (
+				<i
+					className="ri-add-circle-line cart"
+					onClick={() => addCartItem(image.id)}
+				></i>
+			);
+		}
+	}
 	return (
 		<div
 			onMouseEnter={() => handleMouseEnter()}
 			onMouseLeave={() => handleMouseLeave()}
 			className={`${className} image-container`}
 		>
-			{cartIcon}
+			{cartIcon(image.id)}
 			{heartIcon()}
 
-			<img src={imageURL} className="image-grid" />
+			<img src={image.url} className="image-grid" />
 		</div>
 	);
 }
 Image.propTypes = {
-	id: PropTypes.any,
+	image: PropTypes.shape({
+		id: PropTypes.any,
+		url: PropTypes.string.isRequired,
+		isFavorite: PropTypes.bool.isRequired,
+	}),
 	className: PropTypes.string,
-	imageURL: PropTypes.string.isRequired,
-	isFavorite: PropTypes.bool.isRequired
-}
+};
+
 export default Image;

@@ -19,8 +19,8 @@ function Photos() {
 		<>
 			<main className="photos">
 
-					{Photos.map(({id, url, isFavorite}) => {
-						return <Image key={id} id={id} imageURL={url} isFavorite={isFavorite} className={GetClass(id)} />;
+					{Photos.map((img) => {
+						return <Image key={img.id} image={img} className={GetClass(img.id)} />;
 					})}
 			</main>
 		</>
