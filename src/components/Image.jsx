@@ -50,6 +50,7 @@ function Image({ image, className }) {
 			);
 		}
 	}
+	console.log(className);
 	return (
 		<div
 			onMouseEnter={() => handleMouseEnter()}
@@ -59,7 +60,7 @@ function Image({ image, className }) {
 			{cartIcon(image.id)}
 			{heartIcon()}
 
-			<img src={image.url} className="image-grid" />
+			<img src={image.url} className={`image-grid ${className} `} />
 		</div>
 	);
 }
