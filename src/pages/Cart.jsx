@@ -7,10 +7,11 @@ import { Context } from "../context/Context";
 import Item from "../components/Item";
 function Cart() {
 	const { cartItems } = useContext(Context);
+
 	const cartItemElements = cartItems.map((item) => {
 		return <Item key={item.id} item={item} />;
 	});
-	return (
+	return cartItemElements.length > 0 ? (
 		<main className="cart-page">
 			<h1>Check out</h1>
 			<div className="items-container">{cartItemElements}</div>
@@ -18,6 +19,10 @@ function Cart() {
 			<div className="order-button">
 				<button>Place Order</button>
 			</div>
+		</main>
+	) : (
+		<main className="cart-page">
+			<h1>Looks like your cart is empty</h1>
 		</main>
 	);
 }

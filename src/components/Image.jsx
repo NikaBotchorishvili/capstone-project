@@ -50,7 +50,6 @@ function Image({ image, className }) {
 			);
 		}
 	}
-	console.log(className);
 	return (
 		<div
 			onMouseEnter={() => handleMouseEnter()}
